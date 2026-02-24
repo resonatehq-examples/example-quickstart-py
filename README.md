@@ -91,6 +91,6 @@ Now try killing the worker mid-countdown and restarting. **The countdown picks u
 
 ## Next steps
 
-- [Learn how Resonate works](/evaluate/how-it-works)
-- [Explore examples](/get-started/examples)
-- [Build a real application](/learn)
+- [Learn how Resonate works](https://docs.resonatehq.io/evaluate/how-it-works)
+- [Explore examples](https://docs.resonatehq.io/get-started/examples)
+- [Build a real application](https://docs.resonatehq.io/learn)
