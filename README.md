@@ -6,6 +6,12 @@
   </picture>
 </p>
 
+<p align="center">
+  <a href="https://resonatehq.github.io/examples-ci/">
+    <img src="https://img.shields.io/endpoint?url=https://resonatehq.github.io/examples-ci/status/example-quickstart-py.json" alt="examples-ci status">
+  </a>
+</p>
+
 # Quickstart | Resonate Python SDK
 
 ## The function you are about to activate
