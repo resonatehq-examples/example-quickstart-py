@@ -19,28 +19,40 @@
 A countdown as a loop. Simple, but the function can run for minutes, hours, or days, despite restarts.
 
 ```python
-from resonate import Resonate, Context
-from threading import Event
+from __future__ import annotations
 
-def countdown(ctx: Context, count: int, delay: int):
+import asyncio
+import os
+from typing import TYPE_CHECKING
+
+from resonate.resonate import Resonate
+
+if TYPE_CHECKING:
+    from resonate.context import Context
+
+
+async def countdown(ctx: Context, count: int, delay: int) -> None:
     for i in range(count, 0, -1):
         # Run a function, persist its result
-        yield ctx.run(ntfy, i)
+        await ctx.run(ntfy, i)
         # Sleep
-        yield ctx.sleep(delay)
+        await ctx.sleep(delay)
     print("Done!")
 
 
-def ntfy(_: Context, i: int):
+async def ntfy(_: Context, i: int) -> None:
     print(f"Countdown: {i}")
 
 
-# Instantiate Resonate
-resonate = Resonate.remote()
-# Register the function
-resonate.register(countdown)
-resonate.start() # Start Resonate threads
-Event().wait()  # Keep the main thread alive
+async def main() -> None:
+    r = Resonate(url=os.environ.get("RESONATE_URL", "http://localhost:8001"))
+    r.register(countdown)
+    r.register(ntfy)
+    await asyncio.Event().wait()
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
 ```
 
 ## Steps to run
